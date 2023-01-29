@@ -8,10 +8,11 @@ public class Timer2Script : MonoBehaviour
 {
     public float timeValue = 10;
     public Text timeText;
+    //public GameManagerScript gameManagerScript;
     // Start is called before the first frame update
     void Start()
     {
-
+        //gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
     }
 
     // Update is called once per frame
@@ -39,7 +40,8 @@ public class Timer2Script : MonoBehaviour
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        float milliseconds = timeToDisplay % 1 * 1000;
-        timeText.text = string.Format("{0:00} : {1:00} : {2:000}", minutes, seconds, milliseconds);
+        //float milliseconds = timeToDisplay % 1 * 1000;
+        timeText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
     }
+
 }

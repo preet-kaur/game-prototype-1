@@ -23,6 +23,12 @@ public class GameManagerScript : MonoBehaviour
     {
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+    }
+
+    public void restartGame()
+    {
+        gameOverText.gameObject.SetActive(false);
+        isGameActive = true;
     }
 }

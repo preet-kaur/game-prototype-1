@@ -8,8 +8,7 @@ public class Timerscript : MonoBehaviour
     public static float timeValue = 10;
     public Text timeText;
     public GameManagerScript gameManagerScript;
-
-    // Start is called before the first frame update
+  
     void Start()
     {
         gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>();
@@ -17,7 +16,7 @@ public class Timerscript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (timeValue > 0)
         {
@@ -27,27 +26,39 @@ public class Timerscript : MonoBehaviour
         {
             timeValue = 0;
         }
-        Debug.Log("timeValue: " + timeValue);
+    
         displayTime(timeValue);
+     
         if (timeValue == 0)
         {
-            //trigger game over screen
-            Debug.Log("timeValue inside if: " + timeValue);
+            
             gameManagerScript.GameOver();
         }
 
     }
 
-    void displayTime(float timeToDisplay)
+
+    public void displayTime(float timeToDisplay)
     {
         if (timeToDisplay < 0)
         {
             timeToDisplay = 0;
         }
-
+        
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        float milliseconds = timeToDisplay % 1 * 1000;
-        timeText.text = string.Format("{0:00} : {1:00} : {2:000}", minutes, seconds, milliseconds);
+        //float milliseconds = timeToDisplay % 1 * 1000;
+        timeText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
     }
+
+    public void restartTime()
+    {
+        timeValue = 10;
+        if (gameManagerScript.isGameActive == false)
+        {
+            gameManagerScript.restartGame();
+        }
+       
+    }
+
 }

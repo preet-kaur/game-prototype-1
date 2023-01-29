@@ -8,16 +8,17 @@ public class PlayerScript : MonoBehaviour
 
     private float horizontal;
     private float speed = 16f;
+    Vector3 defaultPos;
 
     [SerializeField] private Rigidbody2D rb;        //rigid body comp of player
 
     void Start()
     {
-        
+        defaultPos = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal"); //returns 1,0,-1 depending on direction the player is moving
 
@@ -40,6 +41,11 @@ public class PlayerScript : MonoBehaviour
         }
         Debug.Log("length: " + playerGameObjList.Length);
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void resetPosition()
+    {
+        transform.position = defaultPos;
     }
 
 
